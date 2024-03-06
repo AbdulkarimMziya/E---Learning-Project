@@ -5,9 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Courses</title>
   <style>
-      body{
+      :root {
+      --white: #fdfcfc;
+      --gray: #f6f6f6;
+      --blue: #8eadd5;
+      --black: #272d38;
+    }
+
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    line-height: 100%;
+    }
+
+    body {
+    background-color: var(--white);
+    width: 100%;
+    color: var(--black);
+    font-family: "Inter", sans-serif;
+    scroll-behavior: smooth;
+    }
+      /*body{
           background-color: #8eadd5;
-      }
+      }*/
+      
       .card {
       display: inline-block;
       width: 30%;
