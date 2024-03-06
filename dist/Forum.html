@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <style>
+        :root {
+            --white: #fdfcfc;
+            --gray: #f6f6f6;
+            --blue: #8eadd5;
+            --black: #272d38;
+        }
+      
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            line-height: 100%;
+        }
+
+        body {
+            background-color: var(--white);
+            width: 100%;
+            color: var(--black);
+            font-family: "Inter", sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .blur {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70%;
+            height: 80%;
+        }
+
+        .blur > img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .header {
+            display: flex;
+            width: 100%;
+            padding: 30px 150px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 900;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            gap: 20px;
+        }
+        .navbar a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: var(--black);
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: var(--blue);
+        }
+
+        /* Form */
+        .form-container {
+            margin: 50px auto;
+            width: 60%;
+            padding: 20px;
+            background-color: var(--gray);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container label,
+        .form-container button {
+            margin-top: 10px;
+        }
+
+        .form-container textarea {
+            width: calc(100% - 22px); /* Adjusted width to consider textarea padding */
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--black);
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        .form-container button {
+            padding: 10px 20px;
+            background-color: var(--blue);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #6c93b5;
+        }
+    </style>
+</head>
+<body>
+    <div class="blur">
+        <img src="../blur.png" alt="" />
+    </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">Forum</div>
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="Forum.html">Forum</a>
+            <a href="Contact.html">Contact</a>
+            <a href="Signin.html">Sign In</a>
+        </nav>
+    </header>
+
+    <!-- Form -->
+    <div class="form-container">
+        <form id="messageForm">
+            <label for="professorSelect">Select Professor:</label>
+            <select id="professorSelect" name="professor">
+                <option value="">Select Professor</option>
+                <!-- Populate this dropdown dynamically with professor names -->
+                <option value="professor1">Professor 1</option>
+                <option value="professor2">Professor 2</option>
+                <option value="professor3">Professor 3</option>
+                <!-- Add more options as needed -->
+            </select>
+            <br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50" placeholder="Type your message here"></textarea>
+            <br>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript for handling form submission
+        document.getElementById("messageForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get selected professor's name and message
+            var professor = document.getElementById("professorSelect").value;
+            var message = document.getElementById("message").value;
+
+            // If professor is selected and message is not empty, proceed
+            if (professor && message.trim() !== "") {
+                // Here you can implement sending the message to the selected professor
+                // For simplicity, let's just log the message to the console
+                console.log("Message sent to " + professor + ": " + message);
+                alert("Message sent successfully!"); // Notify user
+                // Optionally, you can reset the form after successful submission
+                document.getElementById("messageForm").reset();
+            } else {
+                alert("Please select a professor and enter a message."); // Notify user to fill all fields
+            }
+        });
+    </script>
+</body>
+</html>
