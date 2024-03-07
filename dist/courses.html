@@ -5,115 +5,321 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Courses</title>
   <style>
+    .quiz-button {
+      width: 150px;
+      height: 75px;
+  display: block;
+  font-size: 20px;
+  margin: 20px auto 20px; /* Center the button horizontally and add bottom margin */
+  padding: 10px 20px; /* Add padding to the button */
+  background-color: var(--blue); /* Use the blue color scheme */
+  color:  --black #272d38; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Add pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.quiz-button:hover {
+  background-color: #6c96bd; /* Darker blue on hover */
+}
+
+
+.popup, .econpopup, .psycpopup, .philpopup, .anthropopup, .sociopopup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  max-height: 50%;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ccc;
+  text-align: center;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+:root {
+  --white: #fdfcfc;
+  --gray: #f6f6f6;
+  --blue: #8eadd5;
+  --black: #272d38;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 100%;
+}
+
+.popup-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.popup p {
+  margin: 10px 0;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+}
       body{
-          background-color: #8eadd5;
-      }
-      .card {
-          display: inline-block;
-          width: 30%; /* Set a fixed width for each card */
-          margin: 1%;
-          padding: 1%;
-          border: 1px solid #ccc;
-          text-align: center;
-      }
+          background-color:  var(--white);
+          width: 100%;
+          color: var(--black);
+          font-family: "Inter", sans-serif;
+          scroll-behavior: smooth;
+        }
+
+        .blur {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70%;
+            height: 80%;
+        }
+
+        .blur > img {
+            width: 100%;
+            height: 100%;
+        }
+
+      .course-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    flex: 1 1 calc(30% - 2%); /* Adjusted width to accommodate margin */
+    margin: 1%;
+    padding: 1%;
+    border: 1px solid #ccc;
+    text-align: center;
+    background-color:  #8eadd5; /* Background color for the card */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
       /* Additional styling for the card content */
       .card img {
-          width: 50%;
+          width: 70%;
+          height: auto;
       }
       .card h3,
-      .card p,
-      .card a {
+      .card p{
           margin: 5px; /* Add some margin to the content */
       }
-      .header {
-          display: flex;
-          width: 100%;
-          padding: 10px 150px;
-          justify-content: space-between;
-          align-items: center;
-      }
-      .logo {
+      .card a {
+          margin: 5px; /* Add some margin to the content */
+          text-decoration: none;
+          color:  #8eadd5;
           font-weight: 900;
       }
-      .menu {
-          display: flex;
-          gap: 20px;
-          list-style-type: none;
-          text-decoration: none;
-      }
-      .menu a{
-          text-decoration: none;
-      }
+
+      .header {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 900;
+            margin-left: 50px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px;
+            color: #FAF9F6;
+            font-weight: 900;
+        }
+        .navbar a {
+            margin: 20px;
+            text-decoration: none;
+            color: var(--black);
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: var(--blue);
+        }
   </style>
 </head>
 <body>
+  <div class="blur">
+    <img src="../blur.png" alt="" />
+</div>
   <!-- Header -->
   <header class="header">
-    <div class="logo">Courses</div>
-    <div class="nav">
-      <ul class="menu">
-        <li>
-          <a href="home.html">Home</a>
-        </li>
-        <li>
-          <a href="courses.html">Courses</a>
-        </li>
-        <li>
-          <a href="dashboard.html">Dashboard</a>
-        </li>
-        <li>
-          <a href="forum.html">Forum</a>
-        </li>
-        <li>
-          <a href="Contact.html">Contact</a>
-        </li>
-        <li>
-          <a href="#">Sign In</a>
-        </li>
-      </ul>
-    </div>
-  </header>
+    <div class="logo">E-LearnHub</div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="Index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="Forum.html">Forum</a>
+        <a href="Contact.html">Contact</a>
+        <a href="Signin.html">Sign In</a>
+    </nav>
+</header>
 
   <!-- Course Cards -->
   <div class="course-container">
     <!-- First Row -->
-    <div class="card">
-      <img src="course1.png" alt="Course 1" />
+    <div class="card" onclick="togglePopup()">
+      <img src="HCI.jpg" alt="Course 1" />
       <h3>HCI Design</h3>
       <p>Learn about the principles and practices of Human-Computer Interaction (HCI) design, including user interface design, usability, and interaction design.</p>
-      <a href="course1_details.html">Learn More</a>
     </div>
-    <div class="card">
-      <img src="course2.png" alt="Course 2" />
+    <div class="card" onclick="econPopup()">
+      <img src="economics.jpg" alt="Course 2" />
       <h3>Intro to Economics</h3>
       <p>Explore the fundamental concepts of economics, including supply and demand, market structures, and macroeconomic principles.</p>
-      <a href="course2_details.html">Learn More</a>
     </div>
-    <div class="card">
-      <img src="course3.png" alt="Course 3" />
+    <div class="card" onclick="psycPopup()">
+      <img src="psyc.jpeg" alt="Course 3" />
       <h3>Intro to Psychology</h3>
       <p>Discover the basics of psychology, covering topics such as behaviorism, cognitive psychology, and developmental psychology.</p>
-      <a href="course3_details.html">Learn More</a>
     </div>
     <!-- Second Row -->
-    <div class="card">
-      <img src="course4.png" alt="Course 4" />
+    <div class="card" onclick="philPopup()">
+      <img src="phil.jpg" alt="Course 4" />
       <h3>Intro to Philosophy</h3>
       <p>Delve into the world of philosophy, exploring philosophical traditions, logic, ethics, and the nature of reality.</p>
-      <a href="course4_details.html">Learn More</a>
     </div>
-    <div class="card">
-      <img src="course5.png" alt="Course 5" />
+    <div class="card" onclick="anthroPopup()">
+      <img src="anthro.jpg" alt="Course 5" />
       <h3>Intro to Anthropology</h3>
       <p>Study the diversity of human cultures and societies, examining topics such as archaeology, cultural anthropology, and linguistic anthropology.</p>
-      <a href="course5_details.html">Learn More</a>
     </div>
-    <div class="card">
-      <img src="course6.png" alt="Course 6" />
+    <div class="card" onclick="socioPopup()">
+      <img src="socio.png" alt="Course 6" />
       <h3>Intro to Sociology</h3>
       <p>Explore the fundamentals of sociology, including social institutions, social change, and sociological research methods.</p>
-      <a href="course6_details.html">Learn More</a>
     </div>
   </div>
+  <div id="popup" class="popup">
+    <span class="close" onclick="togglePopup()">&times;</span>
+    <div class="popup-title">HCI Notes & Video</div>
+    <p>Human-computer interaction (HCI) design encompasses the process of creating interfaces that facilitate seamless interaction between humans and computers. Key principles in HCI design include user-centeredness, which emphasizes understanding users' needs, goals, and preferences to inform design decisions. This involves conducting user research such as interviews, surveys, and observations to gain insights into users' behaviors and requirements.</p>
+    <p>Another critical aspect is usability, focusing on making interfaces intuitive and easy to use. Usability testing involves evaluating prototypes with real users to identify usability issues and refine designs accordingly. Accessibility is also a vital consideration, ensuring that interfaces are usable by individuals with diverse abilities. This may involve incorporating features such as alternative input methods, screen readers, and adjustable font sizes.</p>
+    <p>HCI design also addresses the aesthetic aspect of interfaces through visual design. This involves creating visually appealing layouts, choosing appropriate colors and typography, and ensuring consistency across the interface. Additionally, HCI designers consider the context of use, including the environment in which the interface will be used and the tasks users will perform.</p>
+    <p>Furthermore, HCI design involves iterative design processes, where designs are refined based on feedback from users and stakeholders. Prototyping tools allow designers to quickly create and test interface concepts before final implementation. Collaboration with multidisciplinary teams, including designers, developers, and domain experts, is essential for successful HCI design projects.</p>
+    <p>In summary, HCI design aims to create interfaces that are user-centered, usable, accessible, visually appealing, and tailored to the context of use. By applying principles and methodologies such as user research, usability testing, accessibility considerations, visual design, and iterative prototyping, HCI designers can create interfaces that effectively meet users' needs and enhance the overall user experience.</p>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/yNzLBI0wsGU?si=dsZ3ymEBQrznmXAp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  <div id="econpopup" class="popup">
+    <span class="close" onclick="econPopup()">&times;</span>
+    <div class="popup-title">Economics Notes & Video</div>
+    <p>Economics is the study of how individuals, businesses, governments, and societies allocate scarce resources to satisfy unlimited wants and needs. It is divided into two main branches: microeconomics and macroeconomics. Microeconomics focuses on the behavior of individual agents, such as consumers and firms, and examines how their decisions impact markets. Key concepts in microeconomics include supply and demand, elasticity, consumer behavior, production theory, and market structures like perfect competition, monopoly, and oligopoly.</p>
+    <p>Macroeconomics, on the other hand, deals with the economy as a whole and examines aggregate phenomena such as inflation, unemployment, economic growth, and monetary and fiscal policies. Macroeconomists study the interactions between different sectors of the economy, such as households, businesses, and governments, and analyze the factors influencing overall economic performance.</p>
+    <p>Economics also encompasses various theories and models used to understand and explain economic phenomena. These include classical economics, which emphasizes the role of markets and the efficiency of free competition, and Keynesian economics, which focuses on the role of government intervention in stabilizing the economy during periods of recession or inflation. Other schools of thought include neoclassical economics, behavioral economics, and Marxist economics, each offering different perspectives on economic issues.</p>
+    <p>Moreover, economics is closely intertwined with other disciplines such as sociology, political science, psychology, and environmental studies. It provides insights into how economic systems interact with social and political institutions, human behavior, and environmental factors. Additionally, economists use mathematical and statistical tools to analyze data and test economic theories empirically.</p>
+    <p>Overall, economics plays a crucial role in shaping public policy, informing business decisions, and understanding the complex interactions within economies. By studying economic principles and applying them to real-world situations, economists seek to improve the allocation of resources, promote economic stability and growth, and enhance overall societal welfare.</p>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/2YULdjmg3o0?si=wDsFGvNAiQ9ARM8u" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  <div id="psycpopup" class="popup">
+    <span class="close" onclick="psycPopup()">&times;</span>
+    <div class="popup-title">Psychology Notes & Video</div>
+    <p>Psychology is the scientific study of the mind and behavior. It encompasses various subfields, including clinical psychology, cognitive psychology, developmental psychology, social psychology, and many others. Clinical psychology focuses on diagnosing and treating mental health disorders, while cognitive psychology investigates mental processes such as perception, memory, and decision-making. Developmental psychology examines how individuals grow and change over the lifespan, while social psychology explores how people's thoughts, feelings, and behaviors are influenced by the presence of others.</p>
+    <p>Psychologists use a range of research methods, including experiments, surveys, and observations, to study human behavior and mental processes. They seek to understand both normal and abnormal behavior and apply their findings to various practical domains, such as education, healthcare, business, and law.</p>
+    <p>Key topics in psychology include learning, motivation, emotion, personality, and psychopathology. Psychologists also study social interactions, prejudice, conformity, and group dynamics. Additionally, they investigate factors influencing mental health and well-being, such as stress, resilience, and coping mechanisms.</p>
+    <p>Psychology is also closely related to neuroscience, as both disciplines seek to understand the brain and its role in behavior and mental processes. Advances in brain imaging techniques have allowed psychologists to study the neural correlates of various psychological phenomena, shedding light on the biological basis of behavior.</p>
+    <p>Furthermore, psychology has practical applications in areas such as therapy, counseling, organizational behavior, and forensic psychology. Psychologists work in a variety of settings, including hospitals, schools, universities, research institutions, and private practices, collaborating with other professionals to address complex issues and improve people's lives.</p>
+    <p>In summary, psychology is a diverse and multidisciplinary field that seeks to understand the mind and behavior through scientific inquiry. By studying psychological principles and applying them to real-world problems, psychologists contribute to our understanding of human nature and help to enhance individual and societal well-being.</p>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/OwQvmuk5K1Q?si=ig80GPf9v2BRbfNt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  <div id="philpopup" class="popup">
+    <span class="close" onclick="philPopup()">&times;</span>
+    <div class="popup-title">Philosophy Notes & Video</div>
+    <p>Philosophy is the systematic study of fundamental questions about existence, knowledge, values, reason, mind, and language. It explores issues such as the nature of reality, the possibility of knowledge, the foundations of morality, and the meaning of life. Philosophers use critical thinking and logical reasoning to analyze concepts, arguments, and assumptions, aiming to develop coherent and comprehensive theories that address these fundamental questions.</p>
+    <p>Key branches of philosophy include metaphysics, epistemology, ethics, logic, and aesthetics. Metaphysics investigates the nature of reality, including the existence of God, the mind-body problem, and the nature of space and time. Epistemology examines the nature and scope of knowledge, addressing questions such as how we acquire knowledge, what constitutes evidence, and the limits of human understanding.</p>
+    <p>Ethics explores moral principles and values, seeking to determine what is right or wrong, good or bad, and how individuals should behave. This includes normative ethics, which examines ethical theories and principles, as well as applied ethics, which considers specific ethical issues in areas such as medicine, politics, and business. Logic is the study of valid reasoning and argumentation, providing tools for evaluating and constructing arguments.</p>
+    <p>Aesthetics investigates the nature of beauty and art, exploring questions such as what makes something beautiful, the role of art in society, and the relationship between aesthetic experience and emotions. Philosophers also engage with practical issues, such as political philosophy, philosophy of law, and philosophy of science, applying philosophical theories to real-world problems.</p>
+    <p>Philosophy encourages critical thinking, open-mindedness, and intellectual curiosity, fostering a deeper understanding of ourselves and the world around us. It challenges assumptions, stimulates debate, and encourages reflection on fundamental aspects of human existence. While philosophy may not always provide definitive answers, it offers valuable insights and perspectives that contribute to a richer and more nuanced understanding of life.</p>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/mIYdx6lDDhg?si=tNitR5bqPklhDmDw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  <div id="anthropopup" class="popup">
+    <span class="close" onclick="anthroPopup()">&times;</span>
+    <div class="popup-title">Anthropology Notes & Video</div>
+    <p>Anthropology is the study of human beings, their ancestors, and related primates from a holistic perspective. It encompasses various subfields, including cultural anthropology, archaeology, biological anthropology, and linguistic anthropology. Cultural anthropology focuses on the study of contemporary human cultures, examining beliefs, practices, social organization, and cultural diversity across different societies and historical periods. Archaeology investigates past human societies through the analysis of material remains such as artifacts, structures, and ecofacts, shedding light on the evolution of human cultures and behaviors.</p>
+    <p>Biological anthropology studies the biological and physical aspects of humans and their ancestors, including evolutionary history, genetics, primatology, and human variation. It explores questions about human origins, biological adaptations, and the relationship between biology and culture. Linguistic anthropology examines the role of language in human societies, including language structure, communication patterns, and the relationship between language and culture.</p>
+    <p>Anthropologists use a range of research methods, including participant observation, interviews, surveys, and laboratory analysis, to gather data and analyze human behavior and cultural practices. They seek to understand the diversity of human experience, challenging ethnocentrism and promoting cross-cultural understanding and tolerance.</p>
+    <p>Key concepts in anthropology include culture, ethnicity, globalization, colonialism, and power relations. Anthropologists also engage with contemporary issues such as migration, environmental sustainability, health disparities, and human rights, applying anthropological insights to address social and cultural challenges.</p>
+    <p>Anthropology provides valuable perspectives on what it means to be human, offering insights into the ways in which individuals and societies navigate social, cultural, and environmental contexts. By studying human diversity and shared experiences, anthropologists contribute to a deeper understanding of human nature and the complexities of human societies past and present.</p>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/J5aglbgTEig?si=nxtPR1tjdWeGmtmg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  <div id="sociopopup" class="popup">
+    <span class="close" onclick="socioPopup()">&times;</span>
+    <div class="popup-title">Sociology Notes & Video</div>
+    <p>Sociology is the scientific study of society, social institutions, and social relationships. It examines the patterns of social behavior, social interaction, and social organization that shape human lives. Sociologists seek to understand how society influences individuals and how individuals, in turn, shape society through their actions and interactions.</p>
+    <p>Key concepts in sociology include social structure, socialization, social stratification, culture, and social change. Social structure refers to the patterns of relationships and institutions that organize society, such as family, education, economy, politics, and religion. Socialization is the process through which individuals learn and internalize the norms, values, and beliefs of their society, shaping their identities and behaviors.</p>
+    <p>Social stratification refers to the hierarchical arrangement of individuals into social classes based on factors such as wealth, power, and prestige. Sociologists study the distribution of resources and opportunities within society and the implications of social inequality for individuals and groups. Culture encompasses the shared beliefs, customs, practices, and symbols that define a society and distinguish it from others. Sociologists analyze how culture is created, maintained, and transmitted across generations.</p>
+    <p>Social change is a central concern of sociology, exploring the processes by which societies evolve over time. This includes technological advancements, demographic shifts, social movements, and globalization. Sociologists examine the causes and consequences of social change, as well as the role of individuals and groups in shaping the direction of change.</p>
+    <p>Sociology employs a variety of research methods, including surveys, interviews, observations, and experiments, to collect and analyze data about social phenomena. Sociological research aims to generate empirical evidence that can inform public policy, address social problems, and contribute to our understanding of society.</p>
+    <p>Overall, sociology provides valuable insights into the dynamics of social life, shedding light on the complexities of human societies and the ways in which individuals are shaped by and shape the social world around them. It offers a critical perspective on social issues and challenges, fostering awareness, empathy, and social change.</p>
+    <iframe width="300" height="200" src="https://www.youtube.com/embed/LK5J0-cM-HE?si=a5REwQLAQ0cY0k8K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  <button onclick="window.location.href='quiz.html'" style="margin-bottom: 20px;" class="quiz-button">Quiz Time!</button>
+
+  <script>
+    function togglePopup() {
+      var popup = document.getElementById("popup");
+      if (popup.style.display === "block") {
+        popup.style.display = "none";
+      } else {
+        popup.style.display = "block";
+      }
+    }
+    function econPopup() {
+      var popup = document.getElementById("econpopup");
+      if (popup.style.display === "block") {
+        popup.style.display = "none";
+      } else {
+        popup.style.display = "block";
+      }
+    }
+    function psycPopup() {
+      var popup = document.getElementById("psycpopup");
+      if (popup.style.display === "block") {
+        popup.style.display = "none";
+      } else {
+        popup.style.display = "block";
+      }
+    }
+    function philPopup() {
+      var popup = document.getElementById("philpopup");
+      if (popup.style.display === "block") {
+        popup.style.display = "none";
+      } else {
+        popup.style.display = "block";
+      }
+    }
+    function anthroPopup() {
+      var popup = document.getElementById("anthropopup");
+      if (popup.style.display === "block") {
+        popup.style.display = "none";
+      } else {
+        popup.style.display = "block";
+      }
+    }
+    function socioPopup() {
+      var popup = document.getElementById("sociopopup");
+      if (popup.style.display === "block") {
+        popup.style.display = "none";
+      } else {
+        popup.style.display = "block";
+      }
+    }
+    </script>
 </body>
 </html>
