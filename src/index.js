@@ -34,8 +34,8 @@ const dbref = ref(db);
 
 // Signup Form
 let signupForm = document.getElementById('signup-form');
-let firstName = document.getElementById('first-name');
-let lastName = document.getElementById('last-name');
+let firstname = document.getElementById('first-name');
+let lastname = document.getElementById('last-name');
 let EmailIn = document.getElementById('signup-email');
 let PasswordIn = document.getElementById('signup-password');
 
@@ -46,10 +46,11 @@ let RegisterUser = evt => {
   .then((cred) => {
     // console.log(cred.user);
     set(ref(db, 'UserAuthist/' + cred.user.uid),{
-      firstname: firstName.value,
-      lastname: lastName.value
+      firstname: firstname.value,
+      lastname: lastname.value
     })
     // *reset values
+    alert('User Registered...')
   })
   .catch((error) => {
     alert(error.message)
@@ -73,14 +74,13 @@ let LoginUser = evt => {
     get(child(dbref, 'UserAuthList/' + cred.user.uid)).then((snapshot) =>{
       if(snapshot.exists){
         sessionStorage.setItem("user-info", JSON.stringify({
-          firstname: snapshot.val().firstName,
-          lastname: snapshot.val().lastName
+          firstname: snapshot.val().firstname,
+          lastname: snapshot.val().lastname
         }))
         sessionStorage.setItem("user-creds", JSON.stringify(cred.user));
         window.location.href = "index.html";
       }
     })
-
     // *reset values
   })
   .catch((error) => {
