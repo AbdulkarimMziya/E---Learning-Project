@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+        }
+        div{
+            padding: 5px;
+            border: 2px solid black;
+        }
+        form{
+            display: flex;
+            width: 250px;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <form class="signup-form" id="signup-form">
+            <label for="first-name">First Name</label>
+            <input type="text" name="first-name" id="first-name">
+            <label for="last-name">Last Name</label>
+            <input type="text" name="last-name" id="last-name">
+
+            <label for="email">email: </label>
+            <input type="email" name="email" id="signup-email">
+            <label for="password">password: </label>
+            <input type="password" name="password"  id="signup-password">
+            <button>Sign Up</button>
+        </form>
+    </div>
+    
+    <div>
+        <form class="login-form" id="login-form">
+            <label for="email">email: </label>
+            <input type="email" name="email" id="login-email">
+            <label for="password">password: </label>
+            <input type="password" name="password"  id="login-password">
+            <button>login</button>
+        </form>
+    </div>
+
+    <script src="./bundle.js"></script>
+</body>
+</html>

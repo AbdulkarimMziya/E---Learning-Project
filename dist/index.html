@@ -49,12 +49,21 @@
         </svg>
       </div>
     </header>
+
+    <script>
+      let UserCred = JSON.parse(sessionStorage.getItem('user-creds'));
+      let UserInfo = JSON.parse(sessionStorage.getItem('user-info'));
+
+      let MsgHead = document.getElementById('msg')
+
+      MsgHead.innerText= `Welcome ${UserInfo.firstname + " " + UserInfo.lastname}!`;
+    </script>
     <!-- Main -->
     <main>
       <!-- Hero section -->
       <section class="hero">
         <div class="title">
-          <h1>Welcome to E-Learning Hub</h1>
+          <h1 id="msg">Welcome to E-Learning Hub</h1>
           <p>
             Empowering you through online education
           </p>
