@@ -28,7 +28,10 @@
             <a href="Contact.html">Contact</a>
           </li>
           <li>
-            <a href="Signin.html">Sign In</a>
+            <a href="Signin.html" id="signin">Sign In</a>
+          </li>
+          <li>
+            <a href="#" id="logout" style="display: none;">Log Out</a>
           </li>
         </ul>
       </div>
@@ -50,14 +53,7 @@
       </div>
     </header>
 
-    <script>
-      let UserCred = JSON.parse(sessionStorage.getItem('user-creds'));
-      let UserInfo = JSON.parse(sessionStorage.getItem('user-info'));
-
-      let MsgHead = document.getElementById('msg')
-
-      MsgHead.innerText= `Welcome ${UserInfo.firstname + " " + UserInfo.lastname}!`;
-    </script>
+  
     <!-- Main -->
     <main>
       <!-- Hero section -->
