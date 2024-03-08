@@ -1,5 +1,5 @@
+import { firebaseConfig } from './config.js';
 import { initializeApp } from 'firebase/app';
-
 import {
   getDatabase,
   set,
@@ -10,19 +10,15 @@ import {
 
 import { 
   getAuth,
-  onAuthStateChanged,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signOut
 } from 'firebase/auth';
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDvHWlJ7txJ8fTu1afqDwygk9v5ifh-9AE",
-    authDomain: "e-learning-web-c83f9.firebaseapp.com",
-    projectId: "e-learning-web-c83f9",
-    storageBucket: "e-learning-web-c83f9.appspot.com",
-    messagingSenderId: "577791964756",
-    appId: "1:577791964756:web:7716600e9e4580690e5fc1"
-};
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+
 
 // initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -30,93 +26,131 @@ const app = initializeApp(firebaseConfig);
 // initialize Services
 const db = getDatabase();
 const auth = getAuth(app);
-const dbref = ref(db);
-// Check user authentication state
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    const uid = user.uid;
-    document.getElementById('signing').style.display = 'none';
-    document.getElementById('logout').style.display = 'block';
-    console.log('User is logged in')
-  } else {
-    // User is signed out
-    document.getElementById('logout').style.display = 'none';
-    console.log('User is not logged in!!!')
+
+
+
+
+
+
+
+const signupForm = document.querySelector('.registration.form');
+const loginForm = document.querySelector('.login.form');
+const forgotForm=document.querySelector('.forgot.form');
+const container=document.querySelector('.container');
+const signupBtn = document.querySelector('.signupbtn');
+
+
+const anchors = document.querySelectorAll('a');
+anchors.forEach(anchor => {
+  anchor.addEventListener('click', () => {
+    const id = anchor.id;
+    switch(id){
+    case 'loginLabel':
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+        forgotForm.style.display = 'none';
+        break;
+      case 'signupLabel':
+        signupForm.style.display = 'block';
+        loginForm.style.display = 'none';
+        forgotForm.style.display = 'none';
+        break;
+      case 'forgotLabel':
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'none';
+        forgotForm.style.display = 'block';
+        break;
+    }
+  });
+});
+
+/* Sign Up Form */
+signupBtn.addEventListener('click', () => {
+  const name = document.querySelector('#name').value;
+  const username = document.querySelector('#username').value;
+  const email = document.querySelector('#email').value.trim();
+  const password = document.querySelector('#password').value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      const uid = user.uid;
+
+      sendEmailVerification(auth.currentUser)
+        .then(() => {
+          alert('Verification email sent. Please check your inbox and verify your email before signing in.');
+        })
+        .catch((error) => {
+          alert('Error sending verification email: ' + error.message);
+        });
+
+      console.log('User data saved to Firestore');
+      // You need to import Firestore if you're using it, the import statement is missing here
+      const userRef = doc(db, 'users', uid); // Reference to the user document using the user's UID
+      setDoc(userRef, { // Set data to the user document
+        name: name,
+        username: username,
+        email: email
+      });
+
+      signupForm.style.display = 'none';
+      loginForm.style.display = 'block';
+      forgotForm.style.display = 'none';
+    })
+    .catch((error) => {
+      alert('Error signing up: ' + error.message);
+    });
+});
+
+/* Login form */
+const loginBtn = document.querySelector('.loginbtn');
+loginBtn.addEventListener('click', () => {
+  const email = document.querySelector('#inUsr').value.trim();
+  const password = document.querySelector('#inPass').value;
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      if (user.emailVerified) {
+        console.log('User is signed in with a verified email.');
+        location.href = "index.html";
+      } else {
+        alert('Please verify your email before signing in.');
+      }
+    })
+    .catch((error) => {
+      alert('Error signing in: ' + error.message);
+    });
+});
+
+/* Forgot Btn */
+const forgotBtn=document.querySelector('.forgotbtn');
+
+forgotBtn.addEventListener('click', () => {
+  const emailForReset = document.querySelector('#forgotinp').value.trim();
+ if (emailForReset.length>0) {
+  sendPasswordResetEmail(emailForReset)
+    .then(() => {
+      alert('Password reset email sent. Please check your inbox to reset your password.');
+            signupForm.style.display = 'none';
+            loginForm.style.display = 'block';
+            forgotForm.style.display = 'none';
+    })
+    .catch((error) => {
+    alert('Error sending password reset email: ' + error.message);
+  });
   }
 });
 
+/* Sign Out Btn */
+const signoutBtn = document.querySelector('#signoutbtn');
 
-// Signup Form
-document.getElementById("signup-form").addEventListener("click", function(evt) {
-  evt.preventDefault();
-
-  var email =  document.getElementById("signup-email").value;
-  var password = document.getElementById("signup-password").value;
-  //For new registration
-  createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log(user);
-    alert("Registration successfully!!");
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-    console.log(errorMessage);
-    alert(error);
-  });		  		  
-});
-
-
-// Login Form
-document.getElementById("login-form").addEventListener("submit", function(evt) {
-  evt.preventDefault();
-
-  let email = document.getElementById('login-email').value
-  let password = document.getElementById('login-password').value
-
-  signInWithEmailAndPassword(auth, email, password)
-  .then((cred) => {
-    // console.log(cred.user);
-    alert(cred.user.email +" Login successfully!!!");
-    
-    window.location.href = "index.html";
-    get(child(dbref, 'UserAuthList/' + cred.user.uid)).then((snapshot) =>{
-      if(snapshot.exists){
-        sessionStorage.setItem("user-info", JSON.stringify({
-          firstname: snapshot.val().firstname,
-          lastname: snapshot.val().lastname
-        }))
-        sessionStorage.setItem("user-creds", JSON.stringify(cred.user));
-      }
+signoutBtn.addEventListener('click', () => {
+  signOut()
+    .then(() => {
+      console.log('User signed out successfully');
+      location.href = "index.html";
     })
-    // Update the welcome message with user information
-
-    // *reset values
-  })
-  .catch((error) => {
-    alert(error.message)
-    console.log(error.message)
-    console.log(error.code)
-  })
-});
-
-
-// Logout   
-document.getElementById("logout").addEventListener("click", function() {
-  signOut(auth).then(() => {
-    // Sign-out successful.
-    console.log('Sign-out successful.');
-    alert('Sign-out successful.');
-    // Redirect the user to the login page or any other desired page
-    document.getElementById('logout').style.display = 'none';
-  }).catch((error) => {
-    // An error happened.
-    console.error('Error during sign-out:', error);
-    alert('An error occurred during sign-out. Please try again later.');
-  });		  		  
+    .catch((error) => {
+      alert('Error signing out: ', error);
+    });
 });
