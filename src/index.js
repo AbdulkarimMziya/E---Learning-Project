@@ -107,11 +107,13 @@ const loginBtn = document.querySelector('.loginbtn');
 loginBtn.addEventListener('click', () => {
   const email = document.querySelector('#inUsr').value.trim();
   const password = document.querySelector('#inPass').value;
+  const signinBtn = document.querySelector('#signinbtn');
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       if (user.emailVerified) {
         console.log('User is signed in with a verified email.');
+        signinBtn.style.display = 'none';
         location.href = "index.html";
       } else {
         alert('Please verify your email before signing in.');
