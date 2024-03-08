@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <style>
+    /* Add the same styles for background, navbar, and course cards */
+    body {
+      background-image: url("../blur.png");
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      color: #272d38;
+      font-family: "Inter", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .header {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 900;
+      /*margin-left: 50px;*/
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 50px;
+      color: white; /* Adjust color for better visibility on background */
+    }
+
+    .navbar a {
+      margin: 20px;
+      text-decoration: none;
+      color: #272d38; /* Adjust color for better visibility on background */
+      transition: color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #8eadd5; /* Adjust color for better visibility on background */
+    }
+
+    .course-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: 1200px; /* Set maximum width for better responsiveness */
+    }
+
+    .card {
+      flex: 1 1 calc(30% - 2%);
+      margin: 1%;
+      padding: 1%;
+      border: 1px solid #ccc;
+      text-align: center;
+      background-color: #8eadd5;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease; /* Add transition effect */
+      border-radius: 10px; /* Make the card rounded */
+    }
+
+    .card:hover {
+      background-color: #6c96bd; /* Change background color on hover */
+      transform: scale(1.02); /* Add slight scale effect on hover */
+    }
+
+    /* Additional styling for the card content */
+    .card img {
+      width: 70%;
+      height: auto;
+    }
+
+    .card h3,
+    .card p {
+      margin: 5px;
+    }
+
+    .card a {
+      margin: 5px;
+      text-decoration: none;
+      color: #8eadd5;
+      font-weight: 900;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="logo">E-LearnHub</div>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="Index.html">Home</a>
+    <a href="courses.html">Courses</a>
+    <a href="Forum.html">Forum</a>
+    <a href="Contact.html">About us</a>
+    <a href="Signin.html">Sign In</a>
+  </nav>
+</header>
+
+<!-- Course Cards -->
+<div class="course-container">
+  <!-- Course 1 -->
+  <div class="card" onclick="navigateToQuiz('hci_quiz')">
+    <img src="HCI.jpg" alt="HCI Design" />
+    <h3>HCI Design</h3>
+    <p>Learn about the principles and practices of Human-Computer Interaction (HCI) design, including user interface design, usability, and interaction design.</p>
+    <a href="hci_quiz.html">Take Quiz</a> <!-- Link to the quiz for HCI Design -->
+  </div>
+
+  <!-- Course 2 -->
+  <div class="card" onclick="navigateToQuiz('econ_quiz')">
+    <img src="economics.jpg" alt="Intro to Economics" />
+    <h3>Intro to Economics</h3>
+    <p>Explore the fundamental concepts of economics, including supply and demand, market structures, and macroeconomic principles.</p>
+    <a href="econ_quiz.html">Take Quiz</a> <!-- Link to the quiz for Intro to Economics -->
+  </div>
+
+  <!-- Course 3 -->
+  <div class="card" onclick="navigateToQuiz('psyc_quiz')">
+    <img src="psyc.jpeg" alt="Intro to Psychology" />
+    <h3>Intro to Psychology</h3>
+    <p>Discover the basics of psychology, covering topics such as behaviorism, cognitive psychology, and developmental psychology.</p>
+    <a href="psyc_quiz.html">Take Quiz</a> <!-- Link to the quiz for Intro to Psychology -->
+  </div>
+
+  <!-- Course 4 -->
+  <div class="card" onclick="navigateToQuiz('phil_quiz')">
+    <img src="phil.jpg" alt="Intro to Philosophy" />
+    <h3>Intro to Philosophy</h3>
+    <p>Delve into the world of philosophy, exploring philosophical traditions, logic, ethics, and the nature of reality.</p>
+    <a href="phil_quiz.html">Take Quiz</a> <!-- Link to the quiz for Intro to Philosophy -->
+  </div>
+
+  <!-- Course 5 -->
+  <div class="card" onclick="navigateToQuiz('anthro_quiz')">
+    <img src="anthro.jpg" alt="Intro to Anthropology" />
+    <h3>Intro to Anthropology</h3>
+    <p>Study the diversity of human cultures and societies, examining topics such as archaeology, cultural anthropology, and linguistic anthropology.</p>
+    <a href="anthro_quiz.html">Take Quiz</a> <!-- Link to the quiz for Intro to Anthropology -->
+  </div>
+
+  <!-- Course 6 -->
+  <div class="card" onclick="navigateToQuiz('socio_quiz')">
+    <img src="socio.png" alt="Intro to Sociology" />
+    <h3>Intro to Sociology</h3>
+    <p>Explore the fundamentals of sociology, including social institutions, social change, and sociological research methods.</p>
+    <a href="socio_quiz.html">Take Quiz</a> <!-- Link to the quiz for Intro to Sociology -->
+  </div>
+</div>
+
+<script>
+  function navigateToQuiz(quizId) {
+    document.getElementById(quizId).scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
