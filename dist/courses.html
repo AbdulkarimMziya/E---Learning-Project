@@ -103,8 +103,16 @@
     text-align: center;
     background-color:  #8eadd5; /* Background color for the card */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px;
     cursor: pointer; /* Change cursor to pointer on hover */
-}
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      background-color: #6c96bd;
+      transform: scale(1.02);
+    }
+
 
       /* Additional styling for the card content */
       .card img {
@@ -141,7 +149,7 @@
             align-items: center;
             margin: 50px;
             color: #FAF9F6;
-            font-weight: 900;
+            
         }
         .navbar a {
             margin: 20px;
@@ -167,7 +175,7 @@
         <a href="Index.html">Home</a>
         <a href="courses.html">Courses</a>
         <a href="Forum.html">Forum</a>
-        <a href="Contact.html">Contact</a>
+        <a href="Contact.html">About us</a>
         <a href="Signin.html">Sign In</a>
     </nav>
 </header>
