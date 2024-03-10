@@ -1,5 +1,7 @@
 import { firebaseConfig } from './config.js';
 import { initializeApp } from 'firebase/app';
+
+
 import {
   getDatabase,
   set,
@@ -10,6 +12,7 @@ import {
 
 import { 
   getAuth,
+  onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification,
@@ -17,7 +20,12 @@ import {
   signOut
 } from 'firebase/auth';
 
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { 
+  collection,
+  doc,
+  addDoc,
+  setDoc
+} from "firebase/firestore";
 
 
 // initialize Firebase
@@ -64,6 +72,28 @@ anchors.forEach(anchor => {
   });
 });
 
+
+onAuthStateChanged(auth, (user) => {
+  const showSignInBtn = document.querySelector('#signin');
+  const showLogoutBtn = document.querySelector('#logoutBtn');
+
+
+  if (user) {
+    // User is signed in
+   
+    const uid = user.uid;
+    showSignInBtn.style.display ='none';
+    showLogoutBtn.style.display = 'block';
+
+    console.log('User is logged in');
+  } else {
+    // User is signed out
+    showSignInBtn.style.display ='block';
+    showLogoutBtn.style.display = 'none';
+    console.log('User has logged out');
+  }
+});
+
 /* Sign Up Form */
 signupBtn.addEventListener('click', () => {
   const name = document.querySelector('#name').value;
@@ -107,13 +137,12 @@ const loginBtn = document.querySelector('.loginbtn');
 loginBtn.addEventListener('click', () => {
   const email = document.querySelector('#inUsr').value.trim();
   const password = document.querySelector('#inPass').value;
-  const signinBtn = document.querySelector('#signinbtn');
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       if (user.emailVerified) {
         console.log('User is signed in with a verified email.');
-        signinBtn.style.display = 'none';
+  
         location.href = "index.html";
       } else {
         alert('Please verify your email before signing in.');
@@ -129,7 +158,7 @@ const forgotBtn=document.querySelector('.forgotbtn');
 
 forgotBtn.addEventListener('click', () => {
   const emailForReset = document.querySelector('#forgotinp').value.trim();
- if (emailForReset.length>0) {
+  if (emailForReset.length > 0) {
   sendPasswordResetEmail(emailForReset)
     .then(() => {
       alert('Password reset email sent. Please check your inbox to reset your password.');
@@ -144,10 +173,10 @@ forgotBtn.addEventListener('click', () => {
 });
 
 /* Sign Out Btn */
-const signoutBtn = document.querySelector('#signoutbtn');
+const signoutBtn = document.querySelector('#logoutBtn');
 
 signoutBtn.addEventListener('click', () => {
-  signOut()
+  signOut(auth)
     .then(() => {
       console.log('User signed out successfully');
       location.href = "index.html";
