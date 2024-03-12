@@ -13,7 +13,7 @@ What things you need to install the software and how to install them:
 
 ## Usage
 
-Locate the index.html file undur the 'dist' directory and dislpay using live server.
+Locate the `index.html` file under the `dist` directory and dislpay using live server.
  
 ## Authors
 
