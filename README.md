@@ -9,7 +9,7 @@ What things you need to install the software and how to install them:
 
 ### Installing
 
-1. Clone the repository: https://github.com/AbdulkarimMziya/E---Learning-Project
+1. Clone the repository: `https://github.com/AbdulkarimMziya/E---Learning-Project`
 
 ## Usage
 
