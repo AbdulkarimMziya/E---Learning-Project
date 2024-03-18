@@ -4,6 +4,7 @@
   --white: #fdfcfc;
   --gray: #f6f6f6;
   --blue: #8eadd5;
+  --blue-hover: #1e67c7;
   --black: #272d38;
 
   --primary-font: "Inter", sans-serif;
@@ -32,6 +33,14 @@ body {
 a{
     color: var(--black);
     text-decoration: none;
+}
+
+.btn{
+    transition: color .3s ease;
+}
+.btn:hover{
+    background-color: var(--blue-hover);
+    cursor: pointer;
 }
 
 
