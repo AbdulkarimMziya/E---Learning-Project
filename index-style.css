@@ -21,8 +21,6 @@ img {
 /* header */
 
 .blur {
-  /* display: none; */
-  
   position: absolute;
   top: 0;
   left: 0;
@@ -60,16 +58,17 @@ img {
   width: 30px;
   display: none; 
 }
+
 li > a{
   transition: color 0.3s ease; 
 }
 li > a:hover {
   color: var(--blue); 
 }
-
 li > a:active {
   color: var(--gray); 
 }
+
 /* main */
 main {
   padding: 50px 150px;
@@ -88,9 +87,12 @@ footer {
 .aboutone > .title,
 .contact > .title {
   width: 50%;
+  margin: auto auto;
 }
+
 .hero > .title > h1 {
   font-size: 54px;
+  text-align: left;
   line-height: 100%;
 }
 
