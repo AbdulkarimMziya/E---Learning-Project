@@ -69,3 +69,16 @@ h2{
     line-height: 35.748px; /* 102.137% */
     text-transform: uppercase;
 }
+
+h3{
+    color: var(--primary-color);
+    text-align: center;
+    color: #000;
+    /* H3 - Subheading */
+    font-family: var(--primary-font);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 20px;
+    text-transform: uppercase;
+}

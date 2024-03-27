@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+.carousel-container {
+    width: 1000px;
+    margin: 10px auto;
+    min-height: 200px;
+    position: relative;
+    direction: ltr;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {.carousel-container {
+        width: 80%;
+    }}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {.carousel-container {
+        width: 80%;
+    }}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {.carousel-container {
+        width: 80%;
+    }}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {.carousel-container {
+        width: 85%;
+    }}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {.carousel-container {
+        width: 85%;
+    }}
+
+.carousel-container .track {
+    display: inline-flex;
+    transition: transform 2s;
+    padding: 2px 5px;
+}
+.carousel-container .card-container {
+    width: calc(1000px / 4 + 2.8px);
+    padding-right: 15px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    direction: rtl;
+}
+.carousel-container .card-container .card {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.carousel-container .carousel-inner {
+    overflow: hidden;
+}
+.container-heading h2 {
+    text-align: left;
+}
+.nav .arrow {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #aaaaaa;
+    padding: 25px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.nav div{
+    background: rgba(222,222,222,0.6);
+}
+.nav div:hover{
+    background: rgba(222,222,222,0.2);
+}
+.nav div span{
+    font-size: 1em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav .right {
+    right: -70px;
+}
+
+.nav .left {
+    left: -70px;
+    display: none;
+}
+.nav .right.hide {
+    display: none;
+}
+
+.nav .right.show {
+    display: block;
+}
+.nav .left.show {
+    display: block;
+}
+
+
+.card > * {
+    flex: 0;
+}
+.card:hover {
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.25), 
+                    0 10px 10px var(--blue);
+    transition: 0.3s ease-in;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.card .img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    flex-grow: 1;
+}
+.card img {
+    width: 100%;
+    height: 100%;
+    min-height: 150px;
+    overflow: hidden;
+}
+.card .card-header {
+    flex-grow: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #ffffff;
+    color: black;
+    text-align: justify center;
+    min-height: 50px;
+}
+.card .card-body {
+    color: #64748B;
+    text-align: left;
+    font-size: 10px;
+    line-height: normal;
+}
+.card .card-footer {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.card .card-header h3 {
+    font-size: 16px;
+}
+
+.card .card-footer i {
+    color: #4871ff;
+}
+
