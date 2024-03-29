@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 .carousel-container {
     width: 1000px;
     margin: 10px auto;
@@ -118,6 +119,9 @@
     display: block;
 }
 
+.card-container a {
+    text-decoration: none;
+}
 
 .card > * {
     flex: 0;
