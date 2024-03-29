@@ -185,3 +185,5 @@ signoutBtn.addEventListener('click', () => {
       alert('Error signing out: ', error);
     });
 });
+
+
