@@ -7,34 +7,50 @@
     direction: ltr;
 }
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {.carousel-container {
+@media only screen and (max-width: 600px) {
+    .carousel-container {
         width: 80%;
-    }}
+    }
+    .nav .arrow{
+        bottom: 0;
+    }
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {.carousel-container {
+@media only screen and (min-width: 600px) {
+    .carousel-container {
         width: 80%;
-    }}
+    }
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {.carousel-container {
+@media only screen and (min-width: 768px) {
+    .carousel-container {
         width: 80%;
-    }}
+    }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {.carousel-container {
+@media only screen and (min-width: 992px) {
+    .carousel-container {
         width: 85%;
-    }}
+    }
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {.carousel-container {
+@media only screen and (min-width: 1200px) {
+    .carousel-container {
         width: 85%;
-    }}
+    }
+}
 
 .carousel-container .track {
     display: inline-flex;
     transition: transform 2s;
     padding: 2px 5px;
+}
+.container-heading {
+    margin-bottom: 30px;
 }
 .carousel-container .card-container {
     width: calc(1000px / 4 + 2.8px);
@@ -146,12 +162,30 @@
     justify-content: center; 
     align-items: center;
 }
-
+.container-heading h2 {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
 .card .card-header h3 {
     font-size: 16px;
 }
-
 .card .card-footer i {
     color: #4871ff;
 }
 
+@media only screen and (max-width: 600px) {
+    .nav div span {
+        width: 50%;
+    }
+    .nav .arrow {
+        top: auto; /* Reset top position */
+        bottom: -80px; /* Position at the bottom */
+        transform: translateY(0); /* Reset translateY */
+    }
+    .nav .right {
+        right: 150px;
+    }
+    .nav .left {
+        left: 150px;
+    }
+}
