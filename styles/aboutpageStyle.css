@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 150px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    z-index: 9999;
+}
+
+
+.logo {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+
+.menu {
+    display: flex;
+    gap: 15px;
+    list-style-type: none;
+}
+
+
+
+
+.header a {
+    color: #272d38;
+    text-decoration: none;
+}
+
+
+.menu-btn {
+    color: black;
+    border: 1px solid;
+    width: 30px;
+    display: none;
+}
+
+
+.menu li>a {
+    transition: color 0.3s ease;
+}
+
+
+.menu li>a:hover {
+    color: #8eadd5;
+}
+
+
+.menu li>a:active {
+    color: #f6f6f6;
+}
+
+
+
+
+@media screen and (max-width: 992px) {
+    .header {
+        padding: 20px 10px;
+    }
+}
+
+
+@media screen and (max-width: 670px) {
+    .header {
+        padding: 10px;
+    }
+
+
+    .header .navbar {
+        display: none;
+    }
+
+
+    .menu-btn {
+        display: flex;
+        border: none;
+    }
+}
+
+
+
+
+.about-us {
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+    padding: 90px 0;
+    background: #ddd;
+}
+
+
+.pic {
+    position: relative;
+    height: 85%;
+    width: 40%;
+    border-radius: 10px;
+    margin: 0 5px auto;
+}
+
+
+.about {
+    width: 1130px;
+    max-width: 85%;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* border: 2px solid red; */
+    padding-bottom: 10px;
+}
+
+
+.text {
+    width: 540px;
+}
+
+
+.text h2 {
+    font-size: 60px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+
+.text h5 {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+
+span {
+    color: #4070f4;
+}
+
+
+.text p {
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: 1px;
+}
+
+
+.data {
+    margin-top: 30px;
+}
+
+
+.link {
+    font-size: 18px;
+    background: #8eadd5;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    padding: 8px 25px;
+    border-radius: 6px;
+    transition: 0.5s;
+}
+
+
+.link:hover {
+    background: #000;
+    border: 1px solid #1e67c7;
+}
