@@ -55,7 +55,7 @@ body{
  }
 .form input.button{
   color: #fff;
-  background: #009579;
+  background: #8eadd5;
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 1px;
@@ -64,14 +64,14 @@ body{
   transition: 0.4s;
 }
 .form input.button:hover{
-  background: #006653;
+  background: #1e67c7;
 }
 .signup{
   font-size: 17px;
   text-align: center;
 }
 .signup a{
-  color: #009579;
+  color: #1e67c7;
   cursor: pointer;
 }
 .signup a:hover{

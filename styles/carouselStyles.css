@@ -136,6 +136,7 @@
 .card .img {
     display: flex;
     justify-content: center;
+    max-height: 150px;
     align-items: center;
     font-size: 30px;
     flex-grow: 1;
