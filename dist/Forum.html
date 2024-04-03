@@ -1,57 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum</title>
+    <link rel="stylesheet" href="../styles/forumStyles.css" />
     <style>
-    body {
-      background-image: url("../blur.png");
-      background-size: cover;
-      background-position: center;
-      width: 100%;
-      color: #272d38;
-      font-family: "Inter", sans-serif;
-      scroll-behavior: smooth;
-      margin: 0; /* Remove default margin */
-      padding: 0; /* Remove default padding */
-      
-    }
-
-        .header {
-            display: flex;
+        body {
+            background-image: url("../blur.png");
+            background-size: cover;
+            background-position: center;
             width: 100%;
-            padding: 20px;
-            justify-content: space-between;
-            align-items: center;
-        }
+            color: #272d38;
+            font-family: "Inter", sans-serif;
+            scroll-behavior: smooth;
+            margin: 0;
+            /* Remove default margin */
+            padding: 0;
+            /* Remove default padding */
 
-        .logo {
-            font-weight: 900;
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px 0;
-            gap: 20px;
-        }
-        .navbar a {
-            margin: 0 20px;
-            text-decoration: none;
-            color: var(--black);
-            transition: color 0.3s ease;
-        }
-
-        .navbar a:hover {
-            color: var(--blue);
         }
 
         /* Form */
         .form-container {
-            margin: 50px auto;
+            margin: 150px auto;
             width: 60%;
             padding: 20px;
             background-color: var(--gray);
@@ -59,19 +32,19 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        
-
         .form-container label,
         .form-container button {
             margin-top: 10px;
         }
 
         .form-container textarea {
-            width: calc(100% - 22px); /* Adjusted width to consider textarea padding */
+            width: calc(100% - 22px);
+            /* Adjusted width to consider textarea padding */
             padding: 10px;
             border-radius: 5px;
             border: 1px solid var(--black);
-            resize: vertical; /* Allow vertical resizing */
+            resize: vertical;
+            /* Allow vertical resizing */
         }
 
         .form-container button {
@@ -89,40 +62,59 @@
             background-color: #6c93b5;
         }
 
-        #professorSelect{
-            background-color:  #c7d4ec;
+        #professorSelect {
+            background-color: #c7d4ec;
         }
 
-        #message{
+        #message {
             margin-top: 10px;
         }
     </style>
 </head>
+
 <body>
-    </div>
-    <!-- Header -->
     <header class="header">
-        <div class="logo">Forum</div>
-        <!-- Navigation Bar -->
-        <nav class="navbar">
-            <a href="index.html">Home</a>
-            <a href="Course.html">Courses</a>
-            <a href="Forum.html">Forum</a>
-            <a href="about-us.html">About us</a>
-            <a href="Signin.html">Sign In</a>
-        </nav>
+        <div class="logo">E-LearnHub</div>
+        <div class="navbar">
+            <ul class="menu">
+                <li>
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="course.html">Courses</a>
+                </li>
+                <li>
+                    <a href="Forum.html">Forum</a>
+                </li>
+                <li>
+                    <a href="about-us.html">About us</a>
+                </li>
+                <li>
+                    <a href="Signin.html" id="signin">Sign In</a>
+                </li>
+                <li>
+                    <a href="#" id="logoutBtn" style="display: none;">Log Out</a>
+                </li>
+            </ul>
+        </div>
+        <div class="menu-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </div>
     </header>
 
     <!-- Form -->
     <div class="form-container">
         <form id="messageForm">
-            <label for="professorSelect">Select Professor:</label>
+            <label for="professorSelect">Select Forum:</label>
             <select id="professorSelect" name="professor">
-                <option value="">Select Professor</option>
+                <option value="">Select Forum</option>
                 <!-- Populate this dropdown dynamically with professor names -->
-                <option value="professor1">Professor 1</option>
-                <option value="professor2">Professor 2</option>
-                <option value="professor3">Professor 3</option>
+                <option value="professor1">Computing Science Forum</option>
+                <option value="professor2">Business Forum</option>
+                <option value="professor3">Arts Forum</option>
                 <!-- Add more options as needed -->
             </select>
             <br>
@@ -135,7 +127,7 @@
 
     <script>
         // JavaScript for handling form submission
-        document.getElementById("messageForm").addEventListener("submit", function(event) {
+        document.getElementById("messageForm").addEventListener("submit", function (event) {
             event.preventDefault(); // Prevent default form submission
 
             // Get selected professor's name and message
@@ -156,4 +148,5 @@
         });
     </script>
 </body>
+
 </html>

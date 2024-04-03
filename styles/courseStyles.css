@@ -2,10 +2,15 @@
 
 .header {
     display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     padding: 20px 150px;
     justify-content: space-between;
     align-items: center baseline;
+    background: #FFFFFF;
+    z-index: 9999;
   }
   
 .logo {
@@ -69,6 +74,7 @@
     background-color: rgb(117, 79, 254);
     padding-left: 0px;
     padding-right: 0px;
+    margin-top: 90px;
 }
 .banner-container{
     display: flex;

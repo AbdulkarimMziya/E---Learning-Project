@@ -1,0 +1,85 @@
+@import url('./defaultStyles.css'); /* DEFAULT STYLES */
+
+.header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 150px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    z-index: 9999;
+}
+
+
+.logo {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+
+.menu {
+    display: flex;
+    gap: 15px;
+    list-style-type: none;
+}
+
+
+
+
+.header a {
+    color: #272d38;
+    text-decoration: none;
+}
+
+
+.menu-btn {
+    color: black;
+    border: 1px solid;
+    width: 30px;
+    display: none;
+}
+
+
+.menu li>a {
+    transition: color 0.3s ease;
+}
+
+
+.menu li>a:hover {
+    color: #8eadd5;
+}
+
+
+.menu li>a:active {
+    color: #f6f6f6;
+}
+
+
+
+
+@media screen and (max-width: 992px) {
+    .header {
+        padding: 20px 10px;
+    }
+}
+
+
+@media screen and (max-width: 670px) {
+    .header {
+        padding: 10px;
+    }
+
+
+    .header .navbar {
+        display: none;
+    }
+
+
+    .menu-btn {
+        display: flex;
+        border: none;
+    }
+}

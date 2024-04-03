@@ -181,3 +181,40 @@ span {
     background: #000;
     border: 1px solid #1e67c7;
 }
+
+/* Media Queries */
+
+/* For screens smaller than 992px (e.g., tablets and below) */
+@media screen and (max-width: 992px) {
+    .header {
+        padding: 20px 10px; /* Adjust header padding */
+    }
+
+    .about-us {
+        padding: 50px 0; /* Adjust section padding */
+    }
+
+    .about {
+        flex-direction: column; /* Change flex direction to stack items vertically */
+        width: 100%; /* Adjust width */
+    }
+
+    .text {
+        width: 100%; /* Adjust width */
+        margin-bottom: 20px; /* Add margin bottom */
+        text-align: center; /* Center text */
+    }
+
+    .pic {
+        width: 100%; /* Adjust width */
+        height: auto; /* Maintain aspect ratio */
+        margin-bottom: 20px; /* Add margin bottom */
+    }
+}
+
+/* For screens smaller than 670px (e.g., mobile devices) */
+@media screen and (max-width: 670px) {
+    .header {
+        padding: 10px; /* Further adjust header padding */
+    }
+}
